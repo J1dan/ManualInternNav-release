@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="ImagiNav: Scalable Embodied Navigation via Generative Visual Prediction and Inverse Dynamics.">
+  <meta name="keywords" content="ImagiNav, navigation, generative planning">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ImagiNav: Scalable Embodied Navigation via Generative Visual Prediction and Inverse Dynamics</title>
+
+  <!-- Google Analytics removed (original template ID) -->
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css?v=1.1">
+  <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+    </div>
+
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">ImagiNav: Scalable Embodied Navigation via Generative Visual Prediction and Inverse Dynamics</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Jie Chen<sup>1,2</sup>,</span>
+            <span class="author-block">Yuxin Cai<sup>2,3</sup>,</span>
+            <span class="author-block">Yizhuo Wang<sup>1</sup>,</span>
+            <span class="author-block">Ruofei Bai<sup>2,3</sup>,</span>
+            <span class="author-block">Yuhong Cao<sup>1</sup>,</span>
+            <span class="author-block">Jun Li<sup>2</sup>,</span>
+            <span class="author-block">Yau Wei Yun<sup>2</sup>,</span>
+            <span class="author-block">Guillaume Sartoretti<sup>1</sup></span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Faculty of Mechanical Engineering, National University of Singapore, Singapore.</span>
+            <span class="author-block"><sup>2</sup>Institute for Infocomm Research (I2R), Agency for Science, Technology and Research (A*STAR), Singapore.</span>
+            <span class="author-block"><sup>3</sup>Nanyang Technological University (NTU), Singapore.</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a class="external-link button is-normal is-rounded is-dark" disabled style="cursor: default; opacity: 0.7;">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+
+              <span class="link-block">
+                <a class="external-link button is-normal is-rounded is-dark" disabled style="cursor: default; opacity: 0.7;">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+
+              <span class="link-block">
+                <a href="https://github.com/J1dan/ImagiNav-release" class="external-link button is-normal is-rounded is-dark" target="_blank" rel="noopener noreferrer">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                </a>
+              </span>
+
+              <span class="link-block">
+                <a href="https://huggingface.co/datasets/J1dan/imaginav-dataset" class="external-link button is-normal is-rounded is-dark" target="_blank" rel="noopener noreferrer">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <div style="overflow: hidden; width: 100%; border-radius: 10px;">
+        <video id="imaginav-demo" autoplay muted loop playsinline 
+              style="width: 100%; height: auto; display: block; 
+                      clip-path: inset(2px 0px 3px 0px);
+                      -webkit-clip-path: inset(2px 0px 3px 0px);">
+          <source src="./static/videos/imaginav.mp4" type="video/mp4">
+        </video>
+      </div>
+      <h2 class="subtitle has-text-centered mt-6">
+        <em>ImagiNav</em> formulates navigation as generative visual prediction and inverse dynamics.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full">
+        <h2 class="title is-3 has-text-centered">Abstract</h2>
+        <div class="content has-text-left">
+          <p>
+            Enabling robots to navigate open-world environments via natural language is critical for general-purpose autonomy. Yet, Vision-Language Navigation has relied on end-to-end policies trained on expensive, embodiment-specific robot data. While recent foundation models trained on vast simulation data show promise, the challenge of scaling and generalizing due to the limited scene diversity and visual fidelity in simulation persists.
+          </p>
+          <p>
+            To address this gap, we propose ImagiNav, a novel modular paradigm that decouples visual planning from robot actuation, enabling the direct utilization of diverse in-the-wild navigation videos. Our framework operates as a hierarchy: a Vision-Language Model first decomposes instructions into textual subgoals; a finetuned generative video model then imagines the future video trajectory towards that subgoal; finally, an inverse dynamics model extracts the trajectory from the imagined video, which can then be tracked via a low-level controller. We additionally develop a scalable data pipeline of in-the-wild navigation videos auto-labeled via inverse dynamics and a pretrained Vision-Language Model. ImagiNav demonstrates strong zero-shot transfer to robot navigation without requiring robot demonstrations, paving the way for generalist robots that learn navigation directly from unlabeled, open-world data.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full">
+        <h2 class="title is-3 has-text-centered">Overview</h2>
+        <div class="has-text-centered mt-5">
+          <video controls autoplay muted loop playsinline style="width:100%; border-radius:10px;">
+            <source src="./static/videos/imaginav-video.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title is-3">ImagiNav Framework</h2>
+        <div class="has-text-left mt-4">
+          <img src="./static/images/imaginav.png" alt="ImagiNav synthesizes future video" style="width:100%; height:auto;" />
+          <p class="subtitle mt-4">
+            ImagiNav synthesizes a plausible future egocentric video from the current observation and a
+            natural-language instruction generated by a semantic reasoner such as Gemini, producing a
+            high-level visual plan that is then decoded into actions by an inverse dynamics module. To mitigate spatial ambiguity
+            (e.g., confusing ``left'' with ``right''), a common failure mode in video models, we implement an Action-Conditioned Mixture-of-Experts (AC-MoE) 
+            strategy that routes the generation task to specialized experts, yielding precise motion dynamics.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full">
+        <h2 class="title is-3 has-text-centered">Scalable Data Collection Pipeline</h2>
+        <div class="has-text-left mt-4">
+          <img src="./static/images/datacollection.png" alt="Geometry-first data pipeline" style="width:100%; height:auto;" />
+          <p class="subtitle mt-4">
+            We develop a geometry-first data collection pipeline that enables training from in-the-wild human egocentric navigation videos without requiring precise state estimation. By extracting motion primitives through geometric inverse dynamics prior to semantic annotation, we mitigate spatial hallucination errors common in purely VLM labeling. This paradigm eliminates the need for robot teleoperation, precise localization systems, and metric calibration during data collection, making the approach inherently scalable.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title is-3">Evaluation Highlights</h2>
+      </div>
+    </div>
+
+    <div class="columns is-centered">
+      <div class="column is-full">
+        <h3 class="title is-4 has-text-centered mt-4">Simulation Results</h3>
+        <div class="content has-text-left">
+          <p>
+            ImagiNav‑Real is trained solely on out‑of‑domain human videos with virtually no exposure to residential indoor scenes while generalizing 
+            zero‑shot to a Unitree H1 humanoid embodiment on VLN tasks on the high‑fidelity VLN‑PE benchmark.
+          </p>
+          <div class="has-text-centered mt-6">
+            <img src="./static/images/sim-table.png" alt="VLN-PE results table" style="width:100%; height:auto;" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="columns is-centered">
+      <div class="column is-full">
+        <h3 class="title is-4 has-text-centered mt-6">Imagination vs. Execution</h3>
+        <div class="content has-text-left mb-5">
+          <p>
+            ImagiNav generates high-fidelity visual trajectories that are interpreted by an Inverse Dynamics Model to pose trajectories for the controller. Inheriting the rich priors learned through pretraining, ImagiNav generates physically plausible videos navigating simulated house scenes despite being finetuned on nearly zero domestic environments.
+          </p>
+        </div>
+
+        <div id="video-carousel" class="carousel results-carousel">
+          
+          <div class="item">
+            <div class="box">
+              <div class="columns is-vcentered is-centered is-mobile">
+                <div class="column is-narrow has-text-centered">
+                  <video autoplay controls muted loop playsinline class="imaginav-compare-video">
+                    <source src="./static/videos/237/02_generated_video.mp4" type="video/mp4">
+                  </video>
+                  <p class="title is-6 mt-2">Imagination</p>
+                </div>
+                <div class="column is-narrow has-text-centered">
+                  <video autoplay controls muted loop playsinline class="imaginav-compare-video">
+                    <source src="./static/videos/237/clip_20_30_4hz-237.mp4" type="video/mp4">
+                  </video>
+                  <p class="title is-6 mt-2">Execution / Top-Down Map (<span style="color:#228B22;">green</span> is reference path, <span style="color:#cc0000;">red</span> is executed path)</p>
+                </div>
+              </div>
+              <div class="notification is-light has-text-centered mt-2">
+                <strong>Instruction:</strong> <i>Move forward into the kitchen towards the sink under the window.</i>
+              </div>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="box">
+              <div class="columns is-vcentered is-centered is-mobile">
+                <div class="column is-narrow has-text-centered">
+                  <video autoplay controls muted loop playsinline class="imaginav-compare-video">
+                    <source src="./static/videos/598_step_19/02_generated_video.mp4" type="video/mp4">
+                  </video>
+                  <p class="title is-6 mt-2">Imagination</p>
+                </div>
+                <div class="column is-narrow has-text-centered">
+                  <video autoplay controls muted loop playsinline class="imaginav-compare-video">
+                    <source src="./static/videos/598_step_19/clip_20_30_4hz-598-19.mp4" type="video/mp4">
+                  </video>
+                  <p class="title is-6 mt-2">Execution / Top-Down Map (<span style="color:#228B22;">green</span> is reference path, <span style="color:#cc0000;">red</span> is executed path)</p>
+                </div>
+              </div>
+              <div class="notification is-light has-text-centered mt-2">
+                <strong>Instruction:</strong> <i>Turn left and move forward into the dining area, passing the wooden dining chair and table.</i>
+              </div>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="box">
+              <div class="columns is-vcentered is-centered is-mobile">
+                <div class="column is-narrow has-text-centered">
+                  <video autoplay controls muted loop playsinline class="imaginav-compare-video">
+                    <source src="./static/videos/614_69/02_generated_video.mp4" type="video/mp4">
+                  </video>
+                  <p class="title is-6 mt-2">Imagination</p>
+                </div>
+                <div class="column is-narrow has-text-centered">
+                  <video autoplay controls muted loop playsinline class="imaginav-compare-video">
+                    <source src="./static/videos/614_69/clip_frames_000069_000079_614.mp4" type="video/mp4">
+                  </video>
+                  <p class="title is-6 mt-2">Execution / Instruction</p>
+                </div>
+              </div>
+              <div class="notification is-light has-text-centered mt-2">
+                <strong>Instruction:</strong> <i>Move forward through the doorway into the bathroom, with the shower on the right.</i>
+              </div>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="box">
+              <div class="columns is-vcentered is-centered is-mobile">
+                <div class="column is-narrow has-text-centered">
+                  <video autoplay controls muted loop playsinline class="imaginav-compare-video">
+                    <source src="./static/videos/903/02_generated_video.mp4" type="video/mp4">
+                  </video>
+                  <p class="title is-6 mt-2">Imagination</p>
+                </div>
+                <div class="column is-narrow has-text-centered">
+                  <video autoplay controls muted loop playsinline class="imaginav-compare-video">
+                    <source src="./static/videos/903/clip_frames_000009_000019_903.mp4" type="video/mp4">
+                  </video>
+                  <p class="title is-6 mt-2">Execution / Instruction</p>
+                </div>
+              </div>
+              <div class="notification is-light has-text-centered mt-2">
+                <strong>Instruction:</strong> <i>Move forward through the living area towards the bright doorway, passing the TV wall on the right.</i>
+              </div>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="box">
+              <div class="columns is-vcentered is-centered is-mobile">
+                <div class="column is-narrow has-text-centered">
+                  <video autoplay controls muted loop playsinline class="imaginav-compare-video">
+                    <source src="./static/videos/910/02_generated_video.mp4" type="video/mp4">
+                  </video>
+                  <p class="title is-6 mt-2">Imagination</p>
+                </div>
+                <div class="column is-narrow has-text-centered">
+                  <video autoplay controls muted loop playsinline class="imaginav-compare-video">
+                    <source src="./static/videos/910/clip_frames_000001_000011_910.mp4" type="video/mp4">
+                  </video>
+                  <p class="title is-6 mt-2">Execution / Instruction</p>
+                </div>
+              </div>
+              <div class="notification is-light has-text-centered mt-2">
+                <strong>Instruction:</strong> <i>Move forward through the dining area towards the large window at the far end, passing the dining table on the right.</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+    </div>
+
+    <div class="columns is-centered" style="margin-top: 5rem;"> <div class="column is-full">
+        <h3 class="title is-4 has-text-centered mb-6">Video Generation Results</h3>
+        
+        <div class="content has-text-left">
+          <p>
+            Finetuned on a diverse corpus of real-world videos using our AC‑MoE strategy, ImagiNav‑Real significantly outperforms a variant trained only on simulated data and one that forgoes AC‑MoE.
+          </p>
+
+          <div class="has-text-centered" style="margin: 4rem 0;">
+            <img src="./static/images/video-quality-table.png" alt="AC-MoE ablation" style="width:100%; height:auto;" />
+          </div>
+          
+          <hr style="margin: 5rem 0; opacity: 0.1;"> <div style="margin-bottom: 6rem;"> 
+            <div style="overflow: hidden; border-radius: 10px;">
+              <video controls autoplay muted loop playsinline style="width: 100%; height: auto; display: block; 
+                          clip-path: inset(4px 0px 4px 0px);
+                          -webkit-clip-path: inset(4px 0px 4px 0px);">
+                <source src="./static/videos/sim-real.mp4" type="video/mp4">
+              </video>
+            </div>
+            <p class="is-size-6 mt-4">
+              <strong>Qualitative Comparison:</strong> Model finetuned with Real-world data demonstrates superior understanding of static geometry (Scene A), and dynamic behavior (Scene B).
+            </p>
+          </div>
+
+          <div style="margin-top: 6rem;">
+            <div style="overflow: hidden; border-radius: 10px;">
+              <video controls autoplay muted loop playsinline style="width: 100%; height: auto; display: block; 
+                          clip-path: inset(5px 0px 6px 0px);
+                          -webkit-clip-path: inset(5px 0px 6px 0px);">
+                <source src="./static/videos/diverse.mp4" type="video/mp4">
+              </video>
+            </div>
+            <p class="is-size-6 mt-4">
+              Controllability and geometric grounding of our real-finetuned generation model: Given an initial observation, the model synthesizes diverse physically plausible future trajectories aligned with distinct natural language instructions.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="content">
+      <h2 class="title is-3">Acknowledgements</h2>
+      <p>
+        ImagiNav is built upon the contributions of the open-source community. We specifically thank:
+      </p>
+      <p>
+        <strong>
+          <a href="https://github.com/InternRobotics/InternNav/tree/main" target="_blank" rel="noopener">InternNav</a>
+        </strong> (baselines, VLN-PE benchmark and simulation), 
+        <strong>
+          <a href="https://github.com/Lightricks/LTX-Video" target="_blank" rel="noopener">LTX-Video</a>
+        </strong> (pretrained generative video model for finetuning), 
+        <strong>
+          <a href="https://github.com/facebookresearch/vggt" target="_blank" rel="noopener">VGGT</a>
+        </strong> (pretrained Inverse Dynamics Model), and 
+        <strong>
+          <a href="https://github.com/songweige/content-debiased-fvd" target="_blank" rel="noopener">CD-FVD</a>
+        </strong> (evaluation of Fréchet Video Distance).
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@inproceedings{chen2026,
+  author    = {Chen, Jie and Cai, Yuxin and Wang, Yizhuo and Bai, Ruofei and Cao, Yuhong and li, jun and Yau, Wei-Yun and Sartoretti, Guillaume Adrien},
+  title     = {{ImagiNav: Scalable Embodied Navigation Via Generative Visual Prediction and Inverse Dynamics}},
+  booktitle = {2026 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
+  year      = {2026},
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <!-- footer icons removed per request -->
+    <div class="content has-text-centered">
+      <!-- empty placeholder -->
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is adapted from the <a href="https://github.com/nerfies/nerfies.github.io" target="_blank" rel="noopener">Nerfies template</a> and is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

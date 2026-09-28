@@ -1,0 +1,6 @@
+include LICENSE
+include README.md
+recursive-include requirements *.txt
+prune FastWAM
+prune new-idea
+exclude imaginav_eval_result.json

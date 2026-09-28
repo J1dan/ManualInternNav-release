@@ -1,0 +1,16 @@
+name: "🙏 Question"
+description: Ask a question
+title: "[Question]: "
+labels: ["type/question", "triage-needed"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please search this repository's existing issues before filing a new one.
+
+  - type: textarea
+    attributes:
+      label: Question
+      description: Describe your question in detail.
+    validations:
+      required: true
